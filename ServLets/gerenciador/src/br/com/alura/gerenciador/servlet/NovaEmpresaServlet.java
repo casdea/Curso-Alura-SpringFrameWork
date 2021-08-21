@@ -36,7 +36,8 @@ public class NovaEmpresaServlet extends HttpServlet {
 		request.setAttribute("empresa", empresa.getNome());
 		
 		//Chamar JSP
-		RequestDispatcher rd = request.getRequestDispatcher("/novaEmpresaCriada.jsp");
+		//RequestDispatcher rd = request.getRequestDispatcher("/novaEmpresaCriada.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/novaEmpresaCriadaExpressao.jsp");
 		rd.forward(request, response);
 	}
 
