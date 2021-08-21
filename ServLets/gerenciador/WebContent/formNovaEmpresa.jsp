@@ -10,10 +10,9 @@
 <body>
 	<form name="formNovaEmpresa" id="form-1"
 		action="${linkNova}" method="post">
-		<label for="input-1">Nome:</label> <input id="input-1" name="nome"
-			placeholder="Text" maxlength="65" autofocus="true" required="true"
-			type="text" />
-			<input type="submit" value="Registrar" id="button-1"/>
+		Nome: <input name="nome" type="text" />
+		Data Fundacao: <input name="dataFundacao" type="date" />
+			<input type="submit" value="Registrar"/>
 	</form>
 
 </body>

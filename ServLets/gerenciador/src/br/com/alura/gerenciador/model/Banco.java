@@ -1,6 +1,7 @@
 package br.com.alura.gerenciador.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Banco {
@@ -8,9 +9,9 @@ public class Banco {
 	private static List<Empresa> empresas = new ArrayList<>();
 	
     static {
-    	empresas.add(new Empresa(1,"GOOGLE"));
-    	empresas.add(new Empresa(1,"ALURA"));
-    	empresas.add(new Empresa(1,"MICROSOFT"));
+    	empresas.add(new Empresa(1,"GOOGLE",new Date("01/01/2001")));
+    	empresas.add(new Empresa(1,"ALURA",new Date("01/02/2001")));
+    	empresas.add(new Empresa(1,"MICROSOFT",new Date("01/03/2001")));
     }
 	
 	public void adiciona(Empresa empresa) {
