@@ -27,6 +27,8 @@ public class PrimeiroServlet extends HttpServlet {
 		out.println("O Primeiro ServLet Respndendo....");
 		out.println("</body>");
 		out.println("</html>");
+		
+		System.out.println("Fim da chamada ola");
 	}
 
 }
