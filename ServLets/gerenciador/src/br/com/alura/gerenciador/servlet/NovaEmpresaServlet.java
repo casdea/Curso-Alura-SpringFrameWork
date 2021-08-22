@@ -52,7 +52,8 @@ public class NovaEmpresaServlet extends HttpServlet {
 		// Chamar JSP
 		// RequestDispatcher rd =
 		// request.getRequestDispatcher("/novaEmpresaCriada.jsp");
-		RequestDispatcher rd = request.getRequestDispatcher("/novaEmpresaCriadaExpressao.jsp");
+		//RequestDispatcher rd = request.getRequestDispatcher("/novaEmpresaCriadaExpressao.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/listaEmpresas");
 		rd.forward(request, response);
 
 	}
