@@ -7,12 +7,15 @@ public class Empresa {
 	private Integer id;
 	private String nome;
 	private Date dataFundacao;
+	private static Integer chaveSequencial = 1;
 
-	public Empresa(Integer id, String nome, Date dataFundacao) {
+	public Empresa(String nome, Date dataFundacao) {
 		super();
-		this.id = id;
+		this.id = chaveSequencial;
 		this.nome = nome;
 		this.dataFundacao = dataFundacao;
+		
+		chaveSequencial = chaveSequencial+1;
 	}
 
 	public Integer getId() {
