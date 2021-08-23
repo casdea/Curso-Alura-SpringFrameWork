@@ -16,26 +16,30 @@ import br.com.alura.gerenciador.model.Empresa;
 
 public class EmpresaController {
 	
-	public void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Banco banco = new Banco();
 		List<Empresa> empresas = banco.getEmpresas();
 
 		request.setAttribute("empresas", empresas);
-		RequestDispatcher rd = request.getRequestDispatcher("/listaEmpresasJSTL.jsp");
-		rd.forward(request, response);
+		//RequestDispatcher rd = request.getRequestDispatcher("/listaEmpresasJSTL.jsp");
+		//rd.forward(request, response);
+		
+		return "forward:/listaEmpresasJSTL.jsp";
 	}
 	
-	public void mostra(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String mostra(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Integer id = Integer.parseInt(request.getParameter("id"));
 		Banco banco = new Banco();
 		Empresa empresa = banco.findEmpresaById(id);
 
 		request.setAttribute("empresa", empresa);
-		RequestDispatcher rd = request.getRequestDispatcher("/formAlteraEmpresa.jsp");
-		rd.forward(request, response);
+		//RequestDispatcher rd = request.getRequestDispatcher("/formAlteraEmpresa.jsp");
+		//rd.forward(request, response);
+		
+		return "forward:/formAlteraEmpresa.jsp";
 	}
 
-	public void altera(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String altera(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
 		String nome = request.getParameter("nome");
 		String dataFundacaoTxt = request.getParameter("dataFundacao");
@@ -60,10 +64,12 @@ public class EmpresaController {
 
 		request.setAttribute("empresa", empresa.getNome());
 
-		response.sendRedirect("api?acao=listaEmpresas");
+		//response.sendRedirect("api?acao=listaEmpresas");
+		
+		return "redirect:api?acao=listaEmpresas";
 	}
 	
-	public void cria(HttpServletRequest request, HttpServletResponse response)
+	public String cria(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String nome = request.getParameter("nome");
@@ -86,16 +92,19 @@ public class EmpresaController {
 
 		request.setAttribute("empresa", empresa.getNome());
 
-		response.sendRedirect("api?acao=listaEmpresas");
+		//response.sendRedirect("api?acao=listaEmpresas");
+		return "redirect:api?acao=listaEmpresas";
 
 	}
 
-	public void remove(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String remove(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Integer id = Integer.parseInt(request.getParameter("id"));
 		Banco banco = new Banco();
 		banco.removeEmpresa(id);		
-		response.sendRedirect("api?acao=listaEmpresas");
+		
+		//response.sendRedirect("api?acao=listaEmpresas");
+		return "redirect:api?acao=listaEmpresas";
 				
 	}
 
