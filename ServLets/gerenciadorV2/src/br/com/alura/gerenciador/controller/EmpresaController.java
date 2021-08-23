@@ -60,7 +60,7 @@ public class EmpresaController {
 
 		request.setAttribute("empresa", empresa.getNome());
 
-		response.sendRedirect("listaEmpresas");
+		response.sendRedirect("api?acao=listaEmpresas");
 	}
 	
 	public void cria(HttpServletRequest request, HttpServletResponse response)
@@ -86,7 +86,7 @@ public class EmpresaController {
 
 		request.setAttribute("empresa", empresa.getNome());
 
-		response.sendRedirect("listaEmpresas");
+		response.sendRedirect("api?acao=listaEmpresas");
 
 	}
 
@@ -95,7 +95,7 @@ public class EmpresaController {
 		Integer id = Integer.parseInt(request.getParameter("id"));
 		Banco banco = new Banco();
 		banco.removeEmpresa(id);		
-		response.sendRedirect("listaEmpresas");
+		response.sendRedirect("api?acao=listaEmpresas");
 				
 	}
 

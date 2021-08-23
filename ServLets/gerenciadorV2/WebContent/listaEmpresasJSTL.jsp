@@ -13,13 +13,13 @@
 <body>
 <ul>
         Lista Empresas <br/>
-
+        <a href="formNovaEmpresa.jsp">nova Empresa</a>
 		<c:forEach items="${empresas}" var="empresa" >
 		
 			<li> 
 			   ${empresa.nome} - <fmt:formatDate value="${empresa.dataFundacao}" pattern="dd/MM/yyyy"/>
-			   <a href="/gerenciador/removeEmpresa?id=${empresa.id}">Remover</a>
-			   <a href="/gerenciador/mostraEmpresa?id=${empresa.id}">Editar</a>   
+			   <a href="/gerenciador/api?acao=mostraEmpresa&id=${empresa.id}">edita</a>
+			   <a href="/gerenciador/api?acao=removeEmpresa&id=${empresa.id}">remove</a>   
 			</li>
 		
 		</c:forEach>

@@ -16,9 +16,10 @@ import br.com.alura.gerenciador.controller.EmpresaController;
 public class ApiServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Object LISTA_EMPRESAS = "listaEmpresas";
-	private static final Object CRIA_EMPRESA = "criaEmpresa";
+	private static final Object CRIA_EMPRESA = "novaEmpresa";
 	private static final Object ALTERA_EMPRESAS = "alteraEmpresa";
 	private static final Object REMOVE_EMPRESAS = "removeEmpresa";
+	private static final Object MOSTRA_EMPRESAS = "mostraEmpresa";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -42,6 +43,7 @@ public class ApiServlet extends HttpServlet {
 		if (acao.equals(CRIA_EMPRESA)) empresaController.cria(request, response);
 		if (acao.equals(ALTERA_EMPRESAS)) empresaController.altera(request, response);
 		if (acao.equals(REMOVE_EMPRESAS)) empresaController.remove(request, response);
+		if (acao.equals(MOSTRA_EMPRESAS)) empresaController.mostra(request, response);
 	}
 
 }
