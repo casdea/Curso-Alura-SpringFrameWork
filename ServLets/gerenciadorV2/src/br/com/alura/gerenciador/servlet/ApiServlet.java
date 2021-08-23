@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.alura.gerenciador.controller.EmpresaController;
+import br.com.alura.gerenciador.acao.EmpresaAcao;
 
 /**
  * Servlet implementation class ApiServlet
@@ -40,7 +40,7 @@ public class ApiServlet extends HttpServlet {
 		
 		String acao = request.getParameter("acao");	
 		
-		EmpresaController empresaController = new EmpresaController();
+		EmpresaAcao empresaController = new EmpresaAcao();
 	
 		String url = null;
 	

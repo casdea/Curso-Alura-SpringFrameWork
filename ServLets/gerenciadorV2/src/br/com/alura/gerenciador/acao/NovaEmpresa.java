@@ -1,4 +1,4 @@
-package br.com.alura.gerenciador.controller;
+package br.com.alura.gerenciador.acao;
 
 import java.io.IOException;
 import java.text.ParseException;
