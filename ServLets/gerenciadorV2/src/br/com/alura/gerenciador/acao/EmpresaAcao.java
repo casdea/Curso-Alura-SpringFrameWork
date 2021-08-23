@@ -21,7 +21,7 @@ public class EmpresaAcao {
 
 		request.setAttribute("empresas", empresas);
 
-		return "forward:/listaEmpresasJSTL.jsp";
+		return "forward:/listaEmpresas.jsp";
 	}
 
 	public String nova(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -66,7 +66,7 @@ public class EmpresaAcao {
 
 		request.setAttribute("empresa", empresa.getNome());
 
-		return "redirect:api?acao=listaEmpresas";
+		return "redirect:api?acao=ListaEmpresas";
 	}
 
 	public String cria(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -91,7 +91,7 @@ public class EmpresaAcao {
 
 		request.setAttribute("empresa", empresa.getNome());
 
-		return "redirect:api?acao=listaEmpresas";
+		return "redirect:api?acao=ListaEmpresas";
 
 	}
 
@@ -102,7 +102,7 @@ public class EmpresaAcao {
 		Banco banco = new Banco();
 		banco.removeEmpresa(id);
 
-		return "redirect:api?acao=listaEmpresas";
+		return "redirect:api?acao=ListaEmpresas";
 
 	}
 

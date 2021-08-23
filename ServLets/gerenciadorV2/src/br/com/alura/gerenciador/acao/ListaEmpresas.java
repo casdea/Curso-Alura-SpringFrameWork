@@ -19,7 +19,7 @@ public class ListaEmpresas implements IEmpresaAcao {
 
 		request.setAttribute("empresas", empresas);
 
-		return "forward:/listaEmpresasJSTL.jsp";
+		return "forward:/listaEmpresas.jsp";
 	}
 
 }

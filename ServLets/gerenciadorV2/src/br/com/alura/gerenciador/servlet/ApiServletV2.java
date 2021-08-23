@@ -19,12 +19,6 @@ import br.com.alura.gerenciador.acao.IEmpresaAcao;
 @WebServlet("/api")
 public class ApiServletV2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final Object LISTA_EMPRESAS = "ListaEmpresas";
-	private static final Object CRIA_EMPRESA = "NovaEmpresa";
-	private static final Object ALTERA_EMPRESAS = "AlteraEmpresa";
-	private static final Object REMOVE_EMPRESAS = "RemoveEmpresa";
-	private static final Object MOSTRA_EMPRESAS = "MostraEmpresa";
-	private static final Object INSERIR_EMPRESA = "InsereEmpresa";
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -44,7 +38,7 @@ public class ApiServletV2 extends HttpServlet {
 		
 		String nomeClasse = "br.com.alura.gerenciador.acao."+acao;
 		
-		
+		System.out.println("Chegou "+acao);
 		
 		String url = null;
 		
