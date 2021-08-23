@@ -1,6 +1,7 @@
 package br.com.alura.gerenciador.servlet;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,24 +11,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.alura.gerenciador.controller.EmpresaController;
+import br.com.alura.gerenciador.controller.IEmpresaAcao;
 
 /**
  * Servlet implementation class ApiServlet
  */
-@WebServlet("/apiV1")
-public class ApiServlet extends HttpServlet {
+@WebServlet("/api")
+public class ApiServletV2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final Object LISTA_EMPRESAS = "listaEmpresas";
-	private static final Object CRIA_EMPRESA = "novaEmpresa";
-	private static final Object ALTERA_EMPRESAS = "alteraEmpresa";
-	private static final Object REMOVE_EMPRESAS = "removeEmpresa";
-	private static final Object MOSTRA_EMPRESAS = "mostraEmpresa";
-	private static final Object INSERIR_EMPRESA = "inserirEmpresa";
+	private static final Object LISTA_EMPRESAS = "ListaEmpresas";
+	private static final Object CRIA_EMPRESA = "NovaEmpresa";
+	private static final Object ALTERA_EMPRESAS = "AlteraEmpresa";
+	private static final Object REMOVE_EMPRESAS = "RemoveEmpresa";
+	private static final Object MOSTRA_EMPRESAS = "MostraEmpresa";
+	private static final Object INSERIR_EMPRESA = "InsereEmpresa";
 	
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ApiServlet() {
+    public ApiServletV2() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,16 +42,20 @@ public class ApiServlet extends HttpServlet {
 		
 		String acao = request.getParameter("acao");	
 		
-		EmpresaController empresaController = new EmpresaController();
-	
+		String nomeClasse = "br.com.alura.gerenciador.controller."+acao;
+		
+		
+		
 		String url = null;
-	
-		if (acao.equals(LISTA_EMPRESAS)) url = empresaController.lista(request, response);
-		if (acao.equals(INSERIR_EMPRESA)) url = empresaController.nova(request, response);
-		if (acao.equals(CRIA_EMPRESA)) url = empresaController.cria(request, response);
-		if (acao.equals(ALTERA_EMPRESAS)) url = empresaController.altera(request, response);
-		if (acao.equals(REMOVE_EMPRESAS)) url = empresaController.remove(request, response);
-		if (acao.equals(MOSTRA_EMPRESAS)) url = empresaController.mostra(request, response);
+		
+		try {
+			Class classe = Class.forName(nomeClasse);
+			Object obj = classe.newInstance();
+			url = ((IEmpresaAcao) obj).executa(request, response);
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			throw new ServletException(e);
+		}
 		
 		String[] tipoUrl = url.split(":");
 		

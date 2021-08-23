@@ -12,7 +12,7 @@
 		action="${linkNova}" method="post">
 		Nome: <input name="nome" type="text" />
 		Data Fundacao: <input name="dataFundacao" type="date" />
-		<input hidden="true" type="text" name="acao" value="novaEmpresa">
+		<input hidden="true" type="text" name="acao" value="NovaEmpresa">
 			<input type="submit" value="Registrar"/>
 	</form>
 

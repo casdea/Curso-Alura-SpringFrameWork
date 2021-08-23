@@ -14,7 +14,7 @@
 		Nome: <input name="nome" type="text" value="${empresa.nome}" />
 		Data Fundacao: <input name="dataFundacao" type="text" value="<fmt:formatDate value="${empresa.dataFundacao}" pattern="dd/MM/yyyy"/>"/>
 		<input hidden="true" type="text" name="id" value="${empresa.id}">
-		<input hidden="true" type="text" name="acao" value="alteraEmpresa">
+		<input hidden="true" type="text" name="acao" value="AlteraEmpresa">
 		<input type="submit" value="Alterar"/>
 	</form>
 
