@@ -21,10 +21,13 @@ public class EmpresaController {
 		List<Empresa> empresas = banco.getEmpresas();
 
 		request.setAttribute("empresas", empresas);
-		//RequestDispatcher rd = request.getRequestDispatcher("/listaEmpresasJSTL.jsp");
-		//rd.forward(request, response);
 		
 		return "forward:/listaEmpresasJSTL.jsp";
+	}
+
+	public String nova(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		return "forward:/formNovaEmpresa.jsp";
 	}
 	
 	public String mostra(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

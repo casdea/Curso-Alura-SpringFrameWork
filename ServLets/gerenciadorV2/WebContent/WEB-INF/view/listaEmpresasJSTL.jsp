@@ -13,7 +13,7 @@
 <body>
 <ul>
         Lista Empresas <br/>
-        <a href="formNovaEmpresa.jsp">nova Empresa</a>
+        <a href="/gerenciador/api?acao=inserirEmpresa">nova Empresa</a>
 		<c:forEach items="${empresas}" var="empresa" >
 		
 			<li> 

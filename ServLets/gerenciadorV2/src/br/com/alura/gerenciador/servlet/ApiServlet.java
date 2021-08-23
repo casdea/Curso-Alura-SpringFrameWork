@@ -22,7 +22,8 @@ public class ApiServlet extends HttpServlet {
 	private static final Object ALTERA_EMPRESAS = "alteraEmpresa";
 	private static final Object REMOVE_EMPRESAS = "removeEmpresa";
 	private static final Object MOSTRA_EMPRESAS = "mostraEmpresa";
-       
+	private static final Object INSERIR_EMPRESA = "inserirEmpresa";
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -44,6 +45,7 @@ public class ApiServlet extends HttpServlet {
 		String url = null;
 		
 		if (acao.equals(LISTA_EMPRESAS)) url = empresaController.lista(request, response);
+		if (acao.equals(INSERIR_EMPRESA)) url = empresaController.nova(request, response);
 		if (acao.equals(CRIA_EMPRESA)) url = empresaController.cria(request, response);
 		if (acao.equals(ALTERA_EMPRESAS)) url = empresaController.altera(request, response);
 		if (acao.equals(REMOVE_EMPRESAS)) url = empresaController.remove(request, response);
@@ -52,7 +54,7 @@ public class ApiServlet extends HttpServlet {
 		String[] tipoUrl = url.split(":");
 		
 		if (tipoUrl[0].equals("forward")) {
-			RequestDispatcher rd = request.getRequestDispatcher(tipoUrl[1]);
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view"+tipoUrl[1]);
 			rd.forward(request, response);
 		}
 		else {
