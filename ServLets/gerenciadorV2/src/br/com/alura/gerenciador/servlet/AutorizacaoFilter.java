@@ -15,13 +15,14 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet Filter implementation class AutorizacaoFilter
  */
-@WebFilter("/api")
+//@WebFilter("/api")
 public class AutorizacaoFilter implements Filter {
 
 	public void doFilter(ServletRequest servletRequest, ServletResponse servLetresponse, FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
-
+		System.out.println("Autorizacao Filter");
+		
 		HttpServletRequest request = (HttpServletRequest) servletRequest;
 		HttpServletResponse response = (HttpServletResponse) servLetresponse;
 		
