@@ -8,8 +8,8 @@ import org.apache.http.client.fluent.Request;
 public class ClienteWebService {
 
 	public static void main(String[] args) throws ClientProtocolException, IOException {
-		String conteudo = Request.Post("http://localhost:808/gerenciador/empresas")
-		.addHeader("accept","application/json")		
+		String conteudo = Request.Post("http://localhost:8080/gerenciador/empresas")
+		.addHeader("accept","application/xxml")		
 		.execute()
 		.returnContent()
 		.asString();		

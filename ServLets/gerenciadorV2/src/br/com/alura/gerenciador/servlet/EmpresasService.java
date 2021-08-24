@@ -38,12 +38,16 @@ public class EmpresasService extends HttpServlet {
 			response.setContentType("application/xml");
 			response.getWriter().print(xml);
 
-		} else {
+		} else if (request.getHeader("accept").equals("application/json")) {
 			Gson gson = new Gson();
 			String json = gson.toJson(empresas);
 
 			response.setContentType("application/json");
 			response.getWriter().print(json);
+		}
+		else {
+			response.setContentType("application/json");
+			response.getWriter().print("{'message':'no content'}");
 		}
 	}
 
