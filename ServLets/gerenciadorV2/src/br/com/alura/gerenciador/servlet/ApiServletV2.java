@@ -37,19 +37,16 @@ public class ApiServletV2 extends HttpServlet {
 		
 		String acao = request.getParameter("acao");	
 		
-		HttpSession httpSession = request.getSession();
-		
-		boolean usuarioNaoLogado = httpSession.getAttribute("usuarioLogado") == null;
-		boolean acaoProtegida = !(acao.equals("Login") || acao.equals("LoginForm")); 
-		
-		if (usuarioNaoLogado && acaoProtegida) {
-			response.sendRedirect("api?acao=LoginForm");
-			return; 
-		}
-		
+		/*
+		 * HttpSession httpSession = request.getSession();
+		 * 
+		 * boolean usuarioNaoLogado = httpSession.getAttribute("usuarioLogado") == null;
+		 * boolean acaoProtegida = !(acao.equals("Login") || acao.equals("LoginForm"));
+		 * 
+		 * if (usuarioNaoLogado && acaoProtegida) {
+		 * response.sendRedirect("api?acao=LoginForm"); return; }
+		 */		
 		String nomeClasse = "br.com.alura.gerenciador.acao."+acao;
-		
-		System.out.println("Chegou "+acao);
 		
 		String url = null;
 		
