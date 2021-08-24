@@ -12,6 +12,12 @@
 </head>
 <body>
 <ul>
+		<c:import url="logout-parcial.jsp"></c:import>
+
+		Usuario Logado : ${usuarioLogado.login}
+		<br/>
+		<br/>
+
         Lista Empresas <br/>
         <a href="/gerenciador/api?acao=InsereEmpresa">nova Empresa</a>
 		<c:forEach items="${empresas}" var="empresa" >

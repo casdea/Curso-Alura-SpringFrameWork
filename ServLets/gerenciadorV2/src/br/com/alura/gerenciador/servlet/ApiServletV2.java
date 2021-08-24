@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.alura.gerenciador.acao.EmpresaAcao;
 import br.com.alura.gerenciador.acao.IEmpresaAcao;
@@ -35,6 +36,16 @@ public class ApiServletV2 extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		String acao = request.getParameter("acao");	
+		
+		HttpSession httpSession = request.getSession();
+		
+		boolean usuarioNaoLogado = httpSession.getAttribute("usuarioLogado") == null;
+		boolean acaoProtegida = !(acao.equals("Login") || acao.equals("LoginForm")); 
+		
+		if (usuarioNaoLogado && acaoProtegida) {
+			response.sendRedirect("api?acao=LoginForm");
+			return; 
+		}
 		
 		String nomeClasse = "br.com.alura.gerenciador.acao."+acao;
 		
