@@ -29,13 +29,12 @@ public class EmpresasService extends HttpServlet {
 		// TODO Auto-generated method stub
 		List<Empresa> empresas = new Banco().getEmpresas();
 
-		int tipo = 1;
+		if (request.getHeader("accept").equals("application/xml")) {
 
-		if (tipo == 1) {
 			XStream xStream = new XStream();
 			xStream.alias("empresas", Empresa.class);
 			String xml = xStream.toXML(empresas);
-			
+
 			response.setContentType("application/xml");
 			response.getWriter().print(xml);
 
