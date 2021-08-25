@@ -2,12 +2,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 import dao.ProdutoDAO;
 import modelo.Produto;
 
-public class TestaInsertProdutoV5 {
+public class TestaInsertProdutoEListagemProdutoV6 {
 
 	public static void main(String[] args) throws SQLException {
 		// TODO Auto-generated method stub
@@ -20,14 +19,9 @@ public class TestaInsertProdutoV5 {
 
 		try {
 
-			Produto produto = new Produto("NOVO", "NOVA VERTICAL");
+			Produto produto = new Produto("COMODA", "COMODA VERTICAL");
 
-			ProdutoDAO produtoDAO =  new ProdutoDAO(connection);
-			
-			produtoDAO.salvarProduto(produto);
-			
-			List<Produto> listaProdutos = produtoDAO.listar();
-			listaProdutos.stream().forEach(x -> System.out.println(x.toString()));
+			new ProdutoDAO(connection).salvarProduto(produto);
 			
 			connection.commit();
 
