@@ -1,5 +1,4 @@
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -9,10 +8,10 @@ public class TestaListagem {
 
 	public static void main(String[] args) throws SQLException {
 		// TODO Auto-generated method stub
-		Connection connection =
-				DriverManager.getConnection(
-						"jdbc:mysql://localhost/loja_virtual?useTimezone=true&serverTimezone=UTC",
-						"sistema","adm123%4-98lka9023");
+		
+		ConnectionFactory connectionFactory = new ConnectionFactory();
+		Connection  connection = connectionFactory.open();		
+		
 		System.out.println("Conectou");
 		
 		Statement stm = connection.createStatement();
@@ -32,5 +31,6 @@ public class TestaListagem {
 		connection.close();		
 
 	}
+	
 
 }
