@@ -14,6 +14,7 @@ import br.com.alura.loja.modelo.Cliente;
 import br.com.alura.loja.modelo.ItemPedido;
 import br.com.alura.loja.modelo.Pedido;
 import br.com.alura.loja.modelo.Produto;
+import br.com.alura.loja.modelo.TipoEndereco;
 import br.com.alura.loja.util.JPAUtil;
 import br.com.alura.loja.vo.RelatorioDeVendasVo;
 
@@ -50,7 +51,7 @@ public class CadastroDePedidoV2 {
 		
 		
 		List<RelatorioDeVendasVo> relatorio = pedidoDao.relatorioDeVendas();
-		relatorio.forEach(System.out::println);
+		relatorio.forEach(System.out::println);		
 	}
 	
 	private static void popularBancoDeDados() {
@@ -62,7 +63,7 @@ public class CadastroDePedidoV2 {
 		Produto videogame = new Produto("CARRO", "CARRO HONDA", new BigDecimal("28000"), videogames);
 		Produto macbook = new Produto("MOTO", "MOTO HONDA", new BigDecimal("14000"), informatica);
 		
-		Cliente cliente = new Cliente("Carlos", "12232123456");
+		Cliente cliente = new Cliente("Carlos", "12232123456", TipoEndereco.COMERCIAL, "AV JOSE BONIFACIO", "902", "BELEM","SAO BRAZ", "ENTRE GENTIL E MUNDURUCUS");
 		
 		EntityManager em = JPAUtil.getEntityManager();
 		ProdutoDao produtoDao = new ProdutoDao(em);

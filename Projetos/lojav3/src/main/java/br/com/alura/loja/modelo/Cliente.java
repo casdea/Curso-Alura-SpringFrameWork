@@ -1,5 +1,6 @@
 package br.com.alura.loja.modelo;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,10 +16,21 @@ public class Cliente {
 	private Long id;
 	private String nome;
 	private String cpf;
+	@Embedded
+	private Endereco endereco;
 
 	public Cliente(String nome, String cpf) {
+		super();
+		this.id = id;
 		this.nome = nome;
 		this.cpf = cpf;
+	}
+
+	public Cliente(String nome, String cpf, TipoEndereco tipoEndereco, String logradouro, String numero, String cidade,
+			String bairro, String perimetro) {
+		this.nome = nome;
+		this.cpf = cpf;
+		this.endereco = new Endereco(tipoEndereco, logradouro, numero, cidade, bairro, perimetro);
 	}
 
 	public Cliente() {
@@ -46,6 +58,14 @@ public class Cliente {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 
 }
