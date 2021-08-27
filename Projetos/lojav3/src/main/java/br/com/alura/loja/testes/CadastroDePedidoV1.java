@@ -15,7 +15,7 @@ import br.com.alura.loja.modelo.Pedido;
 import br.com.alura.loja.modelo.Produto;
 import br.com.alura.loja.util.JPAUtil;
 
-public class CadastroDePedido {
+public class CadastroDePedidoV1 {
 
 	public static void main(String[] args) {
 		popularBancoDeDados();
