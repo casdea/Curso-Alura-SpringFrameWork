@@ -1,8 +1,10 @@
 package br.com.alura.loja.modelo;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
+@DiscriminatorValue("I")
 public class Informatica extends Produto {
 
 	private String marca;
