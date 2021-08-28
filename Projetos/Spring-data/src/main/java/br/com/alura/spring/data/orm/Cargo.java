@@ -14,7 +14,7 @@ public class Cargo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String descricao;
-
+	
 	public Integer getId() {
 		return id;
 	}
