@@ -10,7 +10,7 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.alura</groupId>
-	<artifactId>Spring-data</artifactId>
+	<artifactId>spring-data</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Spring-data</name>
 	<description>Demo project for Spring Boot</description>
@@ -29,13 +29,10 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
 		<dependency>
 			<groupId>org.mariadb.jdbc</groupId>
 			<artifactId>mariadb-java-client</artifactId>
-			<version>2.7.4</version>
-		</dependency>
-
+			</dependency>
 	</dependencies>
 
 	<build>
