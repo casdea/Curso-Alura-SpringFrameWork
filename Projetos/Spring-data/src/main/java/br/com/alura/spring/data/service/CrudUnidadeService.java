@@ -6,22 +6,52 @@ import java.util.Scanner;
 
 import org.springframework.stereotype.Service;
 
-import br.com.alura.spring.data.orm.Cargo;
 import br.com.alura.spring.data.orm.Unidade;
-import br.com.alura.spring.data.repository.CargoRepository;
 import br.com.alura.spring.data.repository.UnidadeRepository;
 
 @Service
 public class CrudUnidadeService {
 
 	private final UnidadeRepository unidadeRepository;
+	private boolean system = true;
 
 	public CrudUnidadeService(UnidadeRepository unidadeRepository) {
 		this.unidadeRepository = unidadeRepository;
 	}
 
 	public void inicial(Scanner scanner) {
-
+		while (system) {
+			System.out.println("Qual acao de unidade deseja executar");
+			System.out.println("0 - Sair");
+			System.out.println("1 - Inserir Unidade");
+			System.out.println("2 - Atualizar Unidade");
+			System.out.println("3 - Visualizar Unidade");
+			System.out.println("4 - Excluir Unidade");
+			System.out.println("5 - Exibir Todas Unidades");
+			
+			int action = scanner.nextInt();
+			
+			switch (action) {
+			case 1:
+				salvar(scanner);
+				break;
+			case 2:
+				atualizar(scanner);
+				break;
+			case 3:
+				visualizar(scanner);
+				break;
+			case 4:
+				deletar(scanner);
+				break;
+			case 5:
+				visualizarTodos(scanner);
+				break;
+			default:
+				system = false;
+				break;
+			}
+		}
 	}
 
 	public void salvar(Scanner scanner) {
