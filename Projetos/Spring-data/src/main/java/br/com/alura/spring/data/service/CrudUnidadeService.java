@@ -23,11 +23,11 @@ public class CrudUnidadeService {
 		while (system) {
 			System.out.println("Qual acao de unidade deseja executar");
 			System.out.println("0 - Sair");
-			System.out.println("1 - Inserir Unidade");
-			System.out.println("2 - Atualizar Unidade");
-			System.out.println("3 - Visualizar Unidade");
-			System.out.println("4 - Excluir Unidade");
-			System.out.println("5 - Exibir Todas Unidades");
+			System.out.println("1 - Inserir");
+			System.out.println("2 - Atualizar");
+			System.out.println("3 - Visualizar ");
+			System.out.println("4 - Excluir");
+			System.out.println("5 - Exibir");
 			
 			int action = scanner.nextInt();
 			

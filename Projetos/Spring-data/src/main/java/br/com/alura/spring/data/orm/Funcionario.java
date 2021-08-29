@@ -63,4 +63,10 @@ public class Funcionario {
 		this.unidade = unidade;
 	}
 
+	@Override
+	public String toString() {
+		return "Funcionario [id=" + id + ", nomeFuncionario=" + nomeFuncionario + ", nrMatricula=" + nrMatricula
+				+ ", cargo=" + cargo.getDescricao() + ", unidade=" + unidade.getDescricao() + "]";
+	}
+
 }

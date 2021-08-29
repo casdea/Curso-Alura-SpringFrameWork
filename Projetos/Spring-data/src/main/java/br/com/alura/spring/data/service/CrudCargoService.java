@@ -24,11 +24,11 @@ public class CrudCargoService {
 		while (system) {
 			System.out.println("Qual acao de cargo deseja executar");
 			System.out.println("0 - Sair");
-			System.out.println("1 - Inserir Cargo");
-			System.out.println("2 - Atualizar Cargo");
-			System.out.println("3 - Visualizar Cargo");
-			System.out.println("4 - Excluir Cargo");
-			System.out.println("5 - Exibir Todos Cargos");
+			System.out.println("1 - Inserir");
+			System.out.println("2 - Atualizar");
+			System.out.println("3 - Visualizar");
+			System.out.println("4 - Excluir");
+			System.out.println("5 - Exibir");
 			
 			int action = scanner.nextInt();
 			
