@@ -34,12 +34,21 @@ public class SpringDataApplication implements CommandLineRunner {
 			System.out.println("0 - Sair");
 			System.out.println("1 - Inserir Cargo");
 			System.out.println("2 - Atualizar Cargo");
+			System.out.println("3 - Visualizar Cargo");
+			System.out.println("4 - Excluir Cargo");
+			System.out.println("5 - Exibir Todos");
 
 			int action = scanner.nextInt();
 			if (action == 1) {
 				crudCargoService.salvar(scanner);
 			} else if (action == 2) {
 				crudCargoService.atualizar(scanner);
+			} else if (action == 3) {
+				crudCargoService.visualizar(scanner);
+			} else if (action == 4) {
+				crudCargoService.deletar(scanner);
+			} else if (action == 5) {
+				crudCargoService.visualizarTodos(scanner);
 			} else {
 				system = false;
 			}
