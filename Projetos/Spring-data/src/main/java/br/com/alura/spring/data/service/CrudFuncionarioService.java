@@ -1,5 +1,7 @@
 package br.com.alura.spring.data.service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -15,7 +17,9 @@ import br.com.alura.spring.data.repository.UnidadeRepository;
 
 @Service
 public class CrudFuncionarioService {
-	
+
+	private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
 	private final FuncionarioRepository funcionarioRepository;
 	private final UnidadeRepository unidadeRepository;
 	private final CargoRepository cargoRepository;
@@ -71,9 +75,21 @@ public class CrudFuncionarioService {
 		System.out.println("Nr da Matricula");
 		String nrMatricula  = scanner.next();
 
-		System.out.println("Nr Cargo");
-		String codigoCargo = scanner.next();
+		System.out.println("Digite o salario");
+        Double salario = scanner.nextDouble();
 
+        System.out.println("Digite a data de contracao");
+        String dataContratacao = scanner.next();
+
+        System.out.println("*** LISTAGEM DE CARGOS *** ");
+        
+        List<Cargo> lista = (List<Cargo>) cargoRepository.findAll();
+        
+        lista.forEach(System.out::println);
+        
+		System.out.println("Digite o numero do Cargo Entre os Listados: ");
+		String codigoCargo = scanner.next();
+		
 		Optional<Cargo> cargoOpcional = cargoRepository.findById(Integer.valueOf(codigoCargo));
 		
 		if (cargoOpcional==null) {
@@ -81,9 +97,13 @@ public class CrudFuncionarioService {
 			return; 
 		}
 
-		System.out.println("Nr Unidade");
+		System.out.println("*** LISTAGEM DE UNIDADES *** ");
+        List<Unidade> listaUni = (List<Unidade>) unidadeRepository.findAll();
+        
+        listaUni.forEach(System.out::println);
+		
+		System.out.println("Digite o Numero da Unidade entre as Listadas:");
 		String codigoUnidade = scanner.next();
-
 
 		Optional<Unidade> unidadeOpcional = unidadeRepository.findById(Integer.valueOf(codigoUnidade));
 		
@@ -91,13 +111,16 @@ public class CrudFuncionarioService {
 			System.out.println("Codigo da Unidade informada não existe ");
 			return; 
 		}
-
 		
 		Funcionario funcionario = new Funcionario();
 		funcionario.setNomeFuncionario(nomeFuncioanrio);
 		funcionario.setNrMatricula(nrMatricula);
+        funcionario.setSalario(salario);
+        funcionario.setDataContratacao(LocalDate.parse(dataContratacao, formatter));
+
 		funcionario.setCargo(cargoOpcional.get());
 		funcionario.setUnidade(unidadeOpcional.get());
+
 		
 		funcionarioRepository.save(funcionario);
 		System.out.println("Salvo");

@@ -1,5 +1,7 @@
 package br.com.alura.spring.data.orm;
 
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,6 +18,8 @@ public class Funcionario {
 	private Integer id;
 	private String nomeFuncionario;
 	private String nrMatricula;
+	private Double salario;
+	private LocalDate dataContratacao;
 
 	@ManyToOne
 	private Cargo cargo;
@@ -63,10 +67,27 @@ public class Funcionario {
 		this.unidade = unidade;
 	}
 
+	public Double getSalario() {
+		return salario;
+	}
+
+	public void setSalario(Double salario) {
+		this.salario = salario;
+	}
+
+	public LocalDate getDataContratacao() {
+		return dataContratacao;
+	}
+
+	public void setDataContratacao(LocalDate dataContratacao) {
+		this.dataContratacao = dataContratacao;
+	}
+
 	@Override
 	public String toString() {
 		return "Funcionario [id=" + id + ", nomeFuncionario=" + nomeFuncionario + ", nrMatricula=" + nrMatricula
-				+ ", cargo=" + cargo.getDescricao() + ", unidade=" + unidade.getDescricao() + "]";
+				+ ", salario=" + salario + ", dataContratacao=" + dataContratacao + ", cargo=" + cargo.getDescricao()
+				+ ", unidade=" + unidade.getDescricao() + "]";
 	}
 
 }
