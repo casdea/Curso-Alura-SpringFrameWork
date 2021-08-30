@@ -25,12 +25,16 @@ public class RelatoriosService {
 			System.out.println("Qual acao de cargo deseja executar");
 			System.out.println("0 - Sair");
 			System.out.println("1 - Busca funcionario por Nome");
+			System.out.println("2 - Busca funcionario por Cargo");
 			
 			int action = scanner.nextInt();
 			
 			switch (action) {
 			case 1:
 				buscaFuncionarioPorNome(scanner);
+				break;
+			case 2:
+				buscaFuncionarioPorCargo(scanner);
 				break;
 
 			default:
@@ -47,5 +51,14 @@ public class RelatoriosService {
 		
 		lista.forEach(System.out::println);
 	}
-	
+
+	private void buscaFuncionarioPorCargo(Scanner scanner) {
+		System.out.println("Qual o Cargo deseja Pesquisar ?");
+		String nome = scanner.next();
+		//List<Funcionario> lista = funcionarioRepository.findByCargoDescricao(nome);
+		List<Funcionario> lista = funcionarioRepository.findByCargoDescricaoQuery(nome);
+		
+		lista.forEach(System.out::println);
+	}
+
 }
