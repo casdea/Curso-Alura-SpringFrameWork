@@ -4,9 +4,14 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import br.com.alura.spring.data.orm.Cargo;
+import br.com.alura.spring.data.orm.Funcionario;
 import br.com.alura.spring.data.repository.CargoRepository;
 
 @Service
@@ -90,6 +95,7 @@ public class CrudCargoService {
 
 	public void visualizar(Scanner	scanner)
 	{
+		
 		System.out.println("Digite o codigo para Visualizar");
 		String codigo = scanner.next();
 		Optional<Cargo> cargoOpcional = cargoRepository.findById(Integer.valueOf(codigo));
@@ -107,12 +113,22 @@ public class CrudCargoService {
 
 	public void visualizarTodos(Scanner	scanner)
 	{
-		List<Cargo> lista = (List<Cargo>) cargoRepository.findAll();
+		System.out.println("Qual a pagina ?");
+		Integer pagina = scanner.nextInt();
 		
-		if (lista==null || lista.size()==0) {
-			System.out.println("Nenhum cargo encontrado ");
-			return; 
+		Pageable page = PageRequest.of(pagina, 15, Sort.unsorted());
+		
+		Page<Cargo> lista = cargoRepository.findAll(page);
+		
+		if (lista == null || lista.getSize() == 0) {
+			System.out.println("Nenhum funcionario encontrado ");
+			return;
 		}
+
+		System.out.println("Listagem de Funcionarios");
+		System.out.println("Pagina Atual "+lista.getNumber());
+		System.out.println("Total de Elementos "+lista.getTotalElements());
+		System.out.println("Total de Paginas "+lista.getTotalPages());
 
 		System.out.println("Listagem de Cargos");
 

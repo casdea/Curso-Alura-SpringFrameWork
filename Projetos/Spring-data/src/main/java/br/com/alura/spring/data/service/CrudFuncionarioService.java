@@ -46,6 +46,7 @@ public class CrudFuncionarioService {
 			System.out.println("4 - Excluir");
 			System.out.println("5 - Exibir");
 			System.out.println("6 - Popular Tabela");
+			System.out.println("7 - Exibir Ordenado");
 
 			int action = scanner.nextInt();
 
@@ -68,12 +69,40 @@ public class CrudFuncionarioService {
 			case 6:
 				popularTabela(scanner);
 				break;
+			case 7:
+				visualizarTodosPaginaOrdenado(scanner);
+				break;
 
 			default:
 				system = false;
 				break;
 			}
 		}
+	}
+
+	private void visualizarTodosPaginaOrdenado(Scanner scanner) {
+		System.out.println("Qual a pagina ?");
+		Integer pagina = scanner.nextInt();
+		
+		Pageable page = PageRequest.of(pagina, 15, Sort.by(Sort.Direction.ASC,"nomeFuncionario"));
+		
+		Page<Funcionario> lista = funcionarioRepository.findAll(page);
+
+		if (lista == null || lista.getSize() == 0) {
+			System.out.println("Nenhum funcionario encontrado ");
+			return;
+		}
+
+		System.out.println("Listagem de Funcionarios");
+		System.out.println("Pagina Atual "+lista.getNumber());
+		System.out.println("Total de Elementos "+lista.getTotalElements());
+		System.out.println("Total de Paginas "+lista.getTotalPages());
+		
+		lista.forEach(System.out::println);
+
+				
+		System.out.println("Exibido");
+		
 	}
 
 	private void popularTabela(Scanner scanner) {
