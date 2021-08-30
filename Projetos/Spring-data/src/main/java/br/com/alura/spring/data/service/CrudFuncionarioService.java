@@ -41,6 +41,7 @@ public class CrudFuncionarioService {
 			System.out.println("3 - Visualizar");
 			System.out.println("4 - Excluir");
 			System.out.println("5 - Exibir");
+			System.out.println("6 - Popular Tabela");
 
 			int action = scanner.nextInt();
 
@@ -60,12 +61,34 @@ public class CrudFuncionarioService {
 			case 5:
 				visualizarTodos(scanner);
 				break;
+			case 6:
+				popularTabela(scanner);
+				break;
 
 			default:
 				system = false;
 				break;
 			}
 		}
+	}
+
+	private void popularTabela(Scanner scanner) {
+		// TODO Auto-generated method stub
+		System.out.println("Quantos Registros ?");
+		int qtde = scanner.nextInt();
+		
+		for (int i = 0; i < qtde; i++) {
+			Funcionario funcionario = new Funcionario();
+			funcionario.setNomeFuncionario("Funcionario "+i);
+			funcionario.setNrMatricula(String.valueOf(i));
+			funcionario.setSalario(1300D);
+			funcionario.setDataContratacao(LocalDate.parse("01/01/2020", formatter));
+			funcionario.setCargo(cargoRepository.findById(6).get());
+			funcionario.setUnidade(unidadeRepository.findById(1).get());
+			funcionarioRepository.save(funcionario);
+			System.out.println("Incluindo Registro "+i);
+		}
+		
 	}
 
 	public void salvar(Scanner scanner) {
