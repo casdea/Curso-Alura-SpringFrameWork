@@ -115,10 +115,9 @@ public class CrudCargoService {
 		}
 
 		System.out.println("Listagem de Cargos");
+
+		lista.forEach(System.out::println);
 		
-		for (Cargo cargo : lista) {
-			System.out.println("Descrição "+cargo.getDescricao());
-		}
 		System.out.println("Exibido");
 	}
 

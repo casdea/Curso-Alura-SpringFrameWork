@@ -210,12 +210,8 @@ public class CrudFuncionarioService {
 
 		System.out.println("Listagem de Funcionarios");
 
-		for (Funcionario funcionario : lista) {
-			System.out.println("Nome do Funcionario " + funcionario.getNomeFuncionario());
-			System.out.println("Nr Matricula " + funcionario.getNomeFuncionario());
-			System.out.println("Cargo " + funcionario.getCargo().getDescricao());
-			System.out.println("Unidade " + funcionario.getUnidade().getDescricao());
-		}
+		lista.forEach(System.out::println);
+		
 		System.out.println("Exibido");
 	}
 

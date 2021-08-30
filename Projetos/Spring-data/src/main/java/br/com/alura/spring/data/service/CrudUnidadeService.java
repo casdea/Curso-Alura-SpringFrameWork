@@ -108,7 +108,7 @@ public class CrudUnidadeService {
 
 		System.out.println("Listagem de Unidades");
 
-		lista.stream().forEach(unidade -> System.out.println("Unidade "+unidade.getDescricao()));
+		lista.forEach(System.out::println);
 		System.out.println("Exibido");
 	}
 
