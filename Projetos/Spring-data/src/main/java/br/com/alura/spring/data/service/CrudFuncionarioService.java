@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 
 import br.com.alura.spring.data.orm.Cargo;
 import br.com.alura.spring.data.orm.Funcionario;
+import br.com.alura.spring.data.orm.FuncionarioProjecaoClasseDto;
+import br.com.alura.spring.data.orm.FuncionarioProjecaoInterface;
 import br.com.alura.spring.data.orm.Unidade;
 import br.com.alura.spring.data.repository.CargoRepository;
 import br.com.alura.spring.data.repository.FuncionarioRepository;
@@ -47,7 +49,9 @@ public class CrudFuncionarioService {
 			System.out.println("5 - Exibir");
 			System.out.println("6 - Popular Tabela");
 			System.out.println("7 - Exibir Ordenado");
-
+			System.out.println("8 - Exibir Projecao Interface");
+			System.out.println("9 - Exibir Projecao Classe Dto");
+			
 			int action = scanner.nextInt();
 
 			switch (action) {
@@ -72,12 +76,32 @@ public class CrudFuncionarioService {
 			case 7:
 				visualizarTodosPaginaOrdenado(scanner);
 				break;
+			case 8:
+				visualizarProjecaoInterface(scanner);
+				break;
+			case 9:
+				visualizarProjecaoClasseDto(scanner);
+				break;
 
 			default:
 				system = false;
 				break;
 			}
 		}
+	}
+
+	private void visualizarProjecaoInterface(Scanner scanner) {
+		// TODO Auto-generated method stub
+
+		List<FuncionarioProjecaoInterface> lista = funcionarioRepository.findBySalarioNativeProjecaoInterface();
+		lista.forEach(f -> System.out.println(" Funcionario id: "+f.getId()+" Nome: "+f.getNome()+" Salario: "+f.getSalario()));
+	}
+
+	private void visualizarProjecaoClasseDto(Scanner scanner) {
+		// TODO Auto-generated method stub
+
+		List<FuncionarioProjecaoClasseDto> lista = funcionarioRepository.findBySalarioNativeProjecaoClasseDto();
+		lista.forEach(f -> System.out.println(" Funcionario id: "+f.getId()+" Nome: "+f.getNomeFuncionario()+" Salario: "+f.getSalario()));
 	}
 
 	private void visualizarTodosPaginaOrdenado(Scanner scanner) {
