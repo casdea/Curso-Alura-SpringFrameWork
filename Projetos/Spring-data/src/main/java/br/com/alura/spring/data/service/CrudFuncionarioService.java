@@ -6,6 +6,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import br.com.alura.spring.data.orm.Cargo;
@@ -224,17 +228,26 @@ public class CrudFuncionarioService {
 	}
 
 	public void visualizarTodos(Scanner scanner) {
-		List<Funcionario> lista = (List<Funcionario>) funcionarioRepository.findAll();
+		System.out.println("Qual a pagina ?");
+		Integer pagina = scanner.nextInt();
+		
+		Pageable page = PageRequest.of(pagina, 15, Sort.unsorted());
+		
+		Page<Funcionario> lista = funcionarioRepository.findAll(page);
 
-		if (lista == null || lista.size() == 0) {
+		if (lista == null || lista.getSize() == 0) {
 			System.out.println("Nenhum funcionario encontrado ");
 			return;
 		}
 
 		System.out.println("Listagem de Funcionarios");
-
-		lista.forEach(System.out::println);
+		System.out.println("Pagina Atual "+lista.getNumber());
+		System.out.println("Total de Elementos "+lista.getTotalElements());
+		System.out.println("Total de Paginas "+lista.getTotalPages());
 		
+		lista.forEach(System.out::println);
+
+				
 		System.out.println("Exibido");
 	}
 
