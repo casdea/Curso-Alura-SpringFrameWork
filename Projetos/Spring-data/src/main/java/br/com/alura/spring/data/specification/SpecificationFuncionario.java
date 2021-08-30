@@ -11,4 +11,14 @@ public class SpecificationFuncionario {
 				"%" + nomeFuncionario + "%");
 	}
 
+	public static Specification<Funcionario> nrMatricula(String nrMatricula) {
+		return (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.like(root.get("nrMatricula"),
+				"%" + nrMatricula + "%");
+	}
+
+	public static Specification<Funcionario> salario(Double salario) {
+		return (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get("salario"),
+				salario);
+	}
+
 }

@@ -22,8 +22,33 @@ public class RelatorioFuncionarioDinamico {
 	public void inicial(Scanner scanner) {
 		System.out.print("Digite o nome ");
 		String nomeFuncionario = scanner.next();
-		 
-		List<Funcionario> funcionarios = funcionarioRepository.findAll(Specification.where(SpecificationFuncionario.nomeFuncionario(nomeFuncionario)));
+
+		if (nomeFuncionario.equalsIgnoreCase("NULL"))
+		{
+			nomeFuncionario = null;
+		}
+		
+		System.out.print("Digite a matricula ");
+		String nrMatricula = scanner.next();
+
+		if (nrMatricula.equalsIgnoreCase("NULL"))
+		{
+			nrMatricula = null;
+		}
+
+		System.out.print("Digite o Salario ");
+		Double salario = scanner.nextDouble();
+
+		if (salario == 0) {
+			salario = null;
+		}
+		
+		List<Funcionario> funcionarios = funcionarioRepository.findAll(
+				Specification.where(
+						SpecificationFuncionario.nomeFuncionario(nomeFuncionario))
+					.or(SpecificationFuncionario.nrMatricula(nrMatricula))
+					.or(SpecificationFuncionario.salario(salario))
+				);
 		funcionarios.forEach(System.out::println);
 	}
 	

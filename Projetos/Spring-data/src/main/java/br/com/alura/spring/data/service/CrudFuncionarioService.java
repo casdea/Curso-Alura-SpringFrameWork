@@ -51,6 +51,7 @@ public class CrudFuncionarioService {
 			System.out.println("7 - Exibir Ordenado");
 			System.out.println("8 - Exibir Projecao Interface");
 			System.out.println("9 - Exibir Projecao Classe Dto");
+			System.out.println("10 - Relatorios Dinamicos ");
 			
 			int action = scanner.nextInt();
 
@@ -82,12 +83,21 @@ public class CrudFuncionarioService {
 			case 9:
 				visualizarProjecaoClasseDto(scanner);
 				break;
+			case 10:
+				relatorioDinamicos(scanner);
+				break;
 
 			default:
 				system = false;
 				break;
 			}
 		}
+	}
+
+	private void relatorioDinamicos(Scanner scanner) {
+		// TODO Auto-generated method stub
+		RelatorioFuncionarioDinamico relatorioFuncionarioDinamico = new RelatorioFuncionarioDinamico(funcionarioRepository);
+		relatorioFuncionarioDinamico.inicial(scanner);		
 	}
 
 	private void visualizarProjecaoInterface(Scanner scanner) {
