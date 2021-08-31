@@ -6,6 +6,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,10 +19,17 @@ import br.com.alura.springmvc.model.Pedido;
 @Controller
 public class HomeController {
 
+	@PersistenceContext
+	private EntityManager entityManager;
+	
 	@GetMapping("/home")
 	public String home(Model model) 
 	{
-		Pedido pedido = new Pedido();
+		Query query = entityManager.createQuery("SELECT p FROM Pedido p", Pedido.class);
+		
+		List<Pedido> pedidos = query.getResultList();
+		
+/*		Pedido pedido = new Pedido();
 		pedido.setDataEntrega(LocalDate.parse("12/01/2021", DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 		pedido.setDescricaoProduto("Notebook Dell Inspiron 3501-M46P 15.6\" HD 10ª Geração Intel Core i5 8GB 256GB SSD Windows Preto");
 		pedido.setNomeProduto("Notebook Dell Inspiron 3501");
@@ -27,6 +38,7 @@ public class HomeController {
 		pedido.setValorNegociado(new BigDecimal("1200.00"));
 		
 		List<Pedido> pedidos = Arrays.asList(pedido, pedido, pedido);
+	*/
 		model.addAttribute("pedidos",pedidos);
 		
 		return "home";
