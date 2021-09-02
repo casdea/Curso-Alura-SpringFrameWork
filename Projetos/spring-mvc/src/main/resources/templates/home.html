@@ -8,10 +8,10 @@
 		<div th:replace="~{base :: titulo('Meus Pedidos')}"></div>
 		<nav class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-between mb-3">
 			<ul class="navbar-nav">
-				<a class="nav-item nav-link active" href="">Todos</a>
-				<a class="nav-item nav-link" href="">Aguardando</a>
-				<a class="nav-item nav-link" href="">Entregue</a>
-				<a class="nav-item nav-link" href="">Aprovado</a>
+				<a class="nav-item nav-link active" href="/home">Todos</a>
+				<a class="nav-item nav-link" href="/home/aguardando">Aguardando</a>
+				<a class="nav-item nav-link" href="/home/entregue">Entregue</a>
+				<a class="nav-item nav-link" href="/home/aprovado">Aprovado</a>
 			</ul>
 			<a href="/pedido/formulario"><button class="btn btn-outline-secondary" type="submit">Novo</button></a>
 		</nav>
@@ -40,10 +40,10 @@
 								value="url do produto" />
 						</div>
 
-						<div>Descrição</div>
+						<div>DescriÃ§Ã£o</div>
 						<div>
 							<textarea class="form-control"
-								th:text="${pedido.descricaoProduto}">descrição do pedido</textarea>
+								th:text="${pedido.descricaoProduto}">descriÃ§Ã£o do Produto</textarea>
 						</div>
 					</div>
 					<div class="col-12 col-sm-4">

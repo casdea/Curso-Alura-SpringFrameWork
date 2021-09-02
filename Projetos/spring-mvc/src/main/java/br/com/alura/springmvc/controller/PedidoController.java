@@ -1,6 +1,5 @@
 package br.com.alura.springmvc.controller;
 
-import javax.naming.spi.DirStateFactory.Result;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;

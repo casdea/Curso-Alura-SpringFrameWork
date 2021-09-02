@@ -57,7 +57,7 @@ public class RequisicaoNovoPedido {
 		pedido.setUrlProduto(urlProduto);
 		pedido.setUrlImagem(urlImagem);
 		pedido.setDescricaoProduto(descricaoProduto);
-		pedido.setStatusPedido(StatusPedido.Aguardando);
+		pedido.setStatusPedido(StatusPedido.aguardando);
 		return pedido;
 		
 	}
