@@ -1,12 +1,20 @@
 package br.com.alura.springmvc.dto;
 
+import javax.validation.constraints.NotBlank;
+
 import br.com.alura.springmvc.model.Pedido;
 
 public class RequisicaoNovoPedido {
 
+	@NotBlank
 	private String nomeProduto;
+	
+	@NotBlank
 	private String urlProduto;
+	
+	@NotBlank
 	private String urlImagem;
+	
 	private String descricaoProduto;
 
 	public String getNomeProduto() {

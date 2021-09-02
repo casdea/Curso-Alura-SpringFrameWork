@@ -1,7 +1,10 @@
 package br.com.alura.springmvc.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,13 +20,13 @@ public class PedidoController {
 	private PedidoRepository pedidoRepository;   
 	
 	@GetMapping("formulario")
-	public String formulario()
+	public String formulario(RequisicaoNovoPedido requisicaoNovoPedido)
 	{
 		return "pedido/formulario";
 	}
 
 	@PostMapping("novo")
-	public String novo(RequisicaoNovoPedido requisicaoNovoPedido)
+	public String novo(@Valid RequisicaoNovoPedido requisicaoNovoPedido, BindingResult bindingResult)
 	{
 		pedidoRepository.save(requisicaoNovoPedido.toPedido());
 		
