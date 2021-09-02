@@ -3,6 +3,7 @@ package br.com.alura.springmvc.model;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -14,7 +15,7 @@ import javax.persistence.Id;
 public class Pedido {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nomeProduto;
 	private BigDecimal valorNegociado;
@@ -22,9 +23,10 @@ public class Pedido {
 	private String urlProduto;
 	private String descricaoProduto;
 	private String urlImagem;
-	
+
 	@Enumerated(EnumType.STRING)
-	private StatusPedido statusPedido;
+	@Column(name = "status_pedido")
+	private StatusPedido status;
 
 	public String getNomeProduto() {
 		return nomeProduto;
@@ -74,11 +76,12 @@ public class Pedido {
 		this.urlImagem = urlImagem;
 	}
 
-	public void setStatusPedido(StatusPedido statusPedido) {
-		this.statusPedido = statusPedido;
+	public StatusPedido getStatus() {
+		return status;
 	}
-	
-	public StatusPedido getStatusPedido() {
-		return statusPedido;
+
+	public void setStatus(StatusPedido status) {
+		this.status = status;
 	}
+
 }

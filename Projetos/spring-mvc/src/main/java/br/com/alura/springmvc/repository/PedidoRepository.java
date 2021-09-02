@@ -10,5 +10,5 @@ import br.com.alura.springmvc.model.StatusPedido;
 
 @Repository
 public interface PedidoRepository extends JpaRepository<Pedido, Long> {
-	public List<Pedido> findByStatusPedido(StatusPedido statusPedido);
+	public List<Pedido> findByStatus(StatusPedido status);
 }

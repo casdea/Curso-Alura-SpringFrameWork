@@ -41,7 +41,7 @@ public class HomeController {
 	@GetMapping("/{status}")
 	public String aguardando(@PathVariable("status") String status, Model model) 
 	{
-		model.addAttribute("pedidos",pedidoRepository.findByStatusPedido(StatusPedido.valueOf(status)));
+		model.addAttribute("pedidos",pedidoRepository.findByStatus(StatusPedido.valueOf(status)));
 		model.addAttribute("status",status);
 		
 		return "home";
@@ -50,6 +50,7 @@ public class HomeController {
 	@ExceptionHandler(IllegalArgumentException.class)
 	public String onError()
 	{
+
 		return "redirect:/home";
 	}
 
