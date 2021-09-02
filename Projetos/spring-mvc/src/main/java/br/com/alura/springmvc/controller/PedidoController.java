@@ -1,5 +1,6 @@
 package br.com.alura.springmvc.controller;
 
+import javax.naming.spi.DirStateFactory.Result;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +29,12 @@ public class PedidoController {
 	@PostMapping("novo")
 	public String novo(@Valid RequisicaoNovoPedido requisicaoNovoPedido, BindingResult bindingResult)
 	{
+		if (bindingResult.hasErrors()) {
+			return "pedido/formulario";
+		}
 		pedidoRepository.save(requisicaoNovoPedido.toPedido());
 		
-		return "pedido/formulario";
+		return "redirect:/home";
 	}
 
 }
