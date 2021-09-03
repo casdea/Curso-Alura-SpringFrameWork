@@ -16,6 +16,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
+		.authorizeRequests()
+			.anyRequest().authenticated()
+			.and().httpBasic();
+
+		/*http
 			.authorizeRequests()
 				.antMatchers("/", "/home").permitAll()
 				.anyRequest().authenticated()
@@ -26,6 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 			.logout()
 				.permitAll();
+				*/
 	}
 
 	@Bean
@@ -33,9 +39,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public UserDetailsService userDetailsService() {
 		UserDetails user =
 			 User.withDefaultPasswordEncoder()
-				.username("user")
-				.password("password")
-				.roles("USER")
+				.username("adm")
+				.password("adm")
+				.roles("ADM")
 				.build();
 
 		return new InMemoryUserDetailsManager(user);
