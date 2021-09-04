@@ -23,27 +23,10 @@ public class HomeController {
 	private PedidoRepository pedidoRepository;
 
 	@GetMapping
-	public String home(Model model) 
-	{
-		model.addAttribute("pedidos",pedidoRepository.findAll());
-		
-		return "home";
-	}
+	public String home(Model model) {
+		model.addAttribute("pedidos", pedidoRepository.findByStatus(StatusPedido.entregue));
 
-	@GetMapping("/{status}")
-	public String aguardando(@PathVariable("status") String status, Model model) 
-	{
-		model.addAttribute("pedidos",pedidoRepository.findByStatus(StatusPedido.valueOf(status)));
-		model.addAttribute("status",status);
-		
 		return "home";
-	}
-	
-	@ExceptionHandler(IllegalArgumentException.class)
-	public String onError()
-	{
-
-		return "redirect:/home";
 	}
 
 }
