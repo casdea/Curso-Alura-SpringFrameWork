@@ -1,11 +1,11 @@
 package br.com.alura.springmvc.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.alura.springmvc.model.StatusPedido;
@@ -24,7 +24,11 @@ public class HomeController {
 
 	@GetMapping
 	public String home(Model model) {
-		model.addAttribute("pedidos", pedidoRepository.findByStatus(StatusPedido.entregue));
+		
+		Sort sort = Sort.by("dataEntrega").descending();
+		PageRequest paginacao = PageRequest.of(0, 5, sort);
+		
+		model.addAttribute("pedidos", pedidoRepository.findByStatus(StatusPedido.entregue,paginacao));
 
 		return "home";
 	}
