@@ -24,7 +24,7 @@ public class UsuarioController {
 	public String home(Model model, Principal principal) {
 		model.addAttribute("pedidos", pedidoRepository.findAllByUsuario(principal.getName()));
 
-		return "home";
+		return "/usuario/home";
 	}
 
 	@GetMapping("pedido/{status}")
