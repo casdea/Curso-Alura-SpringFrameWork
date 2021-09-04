@@ -12,8 +12,12 @@ import br.com.alura.springmvc.model.StatusPedido;
 
 @Repository
 public interface PedidoRepository extends JpaRepository<Pedido, Long> {
-	public List<Pedido> findByStatus(StatusPedido status);
+	List<Pedido> findByStatus(StatusPedido status);
 	
 	@Query("SELECT p FROM Pedido p Join p.user u where u.username = :username ")
-	public List<Pedido> findAllByUsuario(@Param("username") String username);
+	List<Pedido> findAllByUsuario(@Param("username") String username);
+	
+	List<Pedido> findByStatusAndUserUsername(StatusPedido status, String username);
+	
+
 }

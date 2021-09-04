@@ -7,7 +7,7 @@ import br.com.alura.springmvc.model.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, String> {
-	
+
 	User findByUsername(String username);
 
 }
