@@ -1,11 +1,10 @@
 <html>
 <head th:replace="~{base :: head}"></head>
-<title>Listagem de Pedidos</title>
 </head>
 <body onload="onLoad()">
 
 	<div th:replace="~{base :: logo}"></div>
-	<div class="container">
+	<div class="container" id="ofertas">
 		<div th:replace="~{base :: titulo('Faça sua oferta')}"></div>
 
 		<div class="card" v-for="pedido in pedidos">
@@ -51,7 +50,7 @@
 					},
 					mounted () {
 						axios
-					      .get('http://localhost:8080/api/pedidos/aguardando')
+					      .get('http://localhost:8085/api/pedidos/aguardando')
 					      .then(response => (this.pedidos = response.data))
 					}
 				});

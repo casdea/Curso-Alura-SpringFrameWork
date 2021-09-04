@@ -23,10 +23,14 @@ public class PedidosRest {
 	@GetMapping("aguardando")
 	public List<Pedido> getPedidosAguardandoOfertas()
 	{
-		//Sort sort = Sort.by("id").descending();
-		//PageRequest paginacao = PageRequest.of(0, 1, sort);
-		//, paginacao
-		return pedidoRepository.findByStatus(StatusPedido.aguardando);
+		Sort sort = Sort.by("id").descending();
+		PageRequest paginacao = PageRequest.of(0, 1, sort);
+		
+		List<Pedido> lista = pedidoRepository.findByStatus(StatusPedido.aguardando, paginacao);
+		
+		lista.stream().forEach(pedido -> System.out.println(" retorno "+pedido.getDescricaoProduto()));
+		
+		return lista;
 	}
 
 }
