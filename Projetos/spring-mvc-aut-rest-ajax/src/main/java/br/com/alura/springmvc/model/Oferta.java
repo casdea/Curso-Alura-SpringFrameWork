@@ -16,13 +16,13 @@ public class Oferta {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private BigDecimal valorOferta;
+	private BigDecimal valor;
 	private LocalDate dataEntrega;
-	private String descricaoOferta;
+	private String comentario;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Pedido pedido;
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -31,12 +31,12 @@ public class Oferta {
 		this.id = id;
 	}
 
-	public BigDecimal getValorOferta() {
-		return valorOferta;
+	public BigDecimal getValor() {
+		return valor;
 	}
 
-	public void setValorOferta(BigDecimal valorOferta) {
-		this.valorOferta = valorOferta;
+	public void setValor(BigDecimal valor) {
+		this.valor = valor;
 	}
 
 	public LocalDate getDataEntrega() {
@@ -47,12 +47,12 @@ public class Oferta {
 		this.dataEntrega = dataEntrega;
 	}
 
-	public String getDescricaoOferta() {
-		return descricaoOferta;
+	public String getComentario() {
+		return comentario;
 	}
 
-	public void setDescricaoOferta(String descricaoOferta) {
-		this.descricaoOferta = descricaoOferta;
+	public void setComentario(String comentario) {
+		this.comentario = comentario;
 	}
 
 	public Pedido getPedido() {

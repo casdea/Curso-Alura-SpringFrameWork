@@ -40,6 +40,7 @@ public class Pedido {
 	private User user;
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "pedido")
+	@JsonIgnore
 	private List<Oferta> ofertas;
 
 	public String getNomeProduto() {
