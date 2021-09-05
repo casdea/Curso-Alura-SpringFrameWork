@@ -68,6 +68,9 @@
 					      .get('http://localhost:8085/api/pedidos/aguardando')
 					      .then(response => {
 					    	  	response.data.forEach(pedido =>{
+console.log("Numero " + pedido.nomeProduto);
+console.log("Numero " + pedido.id);
+						    	  	
 					    	  		pedido.ofertaEnviada = false;
 					    	  		pedido.erros = {
 					    	  			valor: '',

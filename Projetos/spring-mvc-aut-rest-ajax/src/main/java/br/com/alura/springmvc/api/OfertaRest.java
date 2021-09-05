@@ -16,7 +16,7 @@ import br.com.alura.springmvc.model.Pedido;
 import br.com.alura.springmvc.repository.PedidoRepository;
 
 @RestController
-@RequestMapping("/api/oferta")
+@RequestMapping("/api/ofertas")
 public class OfertaRest {
 	
 	@Autowired

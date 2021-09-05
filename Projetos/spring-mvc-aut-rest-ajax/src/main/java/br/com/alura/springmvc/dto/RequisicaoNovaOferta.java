@@ -11,6 +11,8 @@ import br.com.alura.springmvc.model.Oferta;
 
 public class RequisicaoNovaOferta {
 
+	private Long pedidoId;
+	
 	@Pattern(regexp = "^\\d+(\\.\\d+{2})?$")
 	@NotNull
 	private String valor;
@@ -20,7 +22,7 @@ public class RequisicaoNovaOferta {
 
 	private String dataEntrega;
 	private String comentario;
-	private Long pedidoId;
+
 
 	public String getValor() {
 		return valor;
