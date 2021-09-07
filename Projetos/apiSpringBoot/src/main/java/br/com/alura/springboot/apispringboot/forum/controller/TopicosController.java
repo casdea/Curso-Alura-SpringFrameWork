@@ -11,11 +11,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import br.com.alura.springboot.apispringboot.forum.dto.AtualizarTopicoInput;
 import br.com.alura.springboot.apispringboot.forum.dto.DetalhesTopicoModel;
 import br.com.alura.springboot.apispringboot.forum.dto.TopicoInput;
 import br.com.alura.springboot.apispringboot.forum.dto.TopicoModel;
@@ -69,6 +71,18 @@ public class TopicosController {
 		}
 
 		return new DetalhesTopicoModel(opcional.get());
+	}
+
+	@PutMapping("/{id}")
+	public ResponseEntity<TopicoModel> atualizar(@PathVariable Long id,
+			@RequestBody @Valid AtualizarTopicoInput atualizarTopicoInput, UriComponentsBuilder uriComponentsBuilder) {
+
+		Topico topico = atualizarTopicoInput.atualizar(id, topicoRepository);
+
+		if (topico == null)
+			return ResponseEntity.notFound().build();
+		else
+			return ResponseEntity.ok(new TopicoModel(topico));
 	}
 
 }
