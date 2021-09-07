@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import br.com.alura.springboot.apispringboot.forum.dto.TopicoModel;
+
 @Entity
 public class Topico {
 
@@ -23,18 +25,22 @@ public class Topico {
 	private String titulo;
 	private String mensagem;
 	private LocalDateTime dataCriacao = LocalDateTime.now();
-	
+
 	@Enumerated(EnumType.STRING)
 	private StatusTopico status = StatusTopico.NAO_RESPONDIDO;
 
 	@ManyToOne
 	private Usuario autor;
-	
+
 	@ManyToOne
 	private Curso curso;
-	
+
 	@OneToMany(mappedBy = "topico")
 	private List<Resposta> respostas = new ArrayList<>();
+
+	public Topico() {
+		super();
+	}
 
 	public Topico(String titulo, String mensagem, Curso curso) {
 		this.titulo = titulo;
@@ -42,6 +48,13 @@ public class Topico {
 		this.curso = curso;
 	}
 
+	public Topico(TopicoModel topicoModel, Curso curso) {
+		this.titulo = titulo;
+		this.mensagem = mensagem;
+		this.curso = curso;
+	}
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
