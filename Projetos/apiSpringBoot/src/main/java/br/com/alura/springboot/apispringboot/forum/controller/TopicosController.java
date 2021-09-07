@@ -4,10 +4,14 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -74,6 +78,7 @@ public class TopicosController {
 	}
 
 	@PutMapping("/{id}")
+	@Transactional
 	public ResponseEntity<TopicoModel> atualizar(@PathVariable Long id,
 			@RequestBody @Valid AtualizarTopicoInput atualizarTopicoInput, UriComponentsBuilder uriComponentsBuilder) {
 
@@ -83,6 +88,27 @@ public class TopicosController {
 			return ResponseEntity.notFound().build();
 		else
 			return ResponseEntity.ok(new TopicoModel(topico));
+	}
+
+	@DeleteMapping("/{id}")
+	@Transactional
+	public ResponseEntity<?> remover(@PathVariable Long id,
+			@RequestBody @Valid AtualizarTopicoInput atualizarTopicoInput, UriComponentsBuilder uriComponentsBuilder) {
+
+		Optional<Topico> opcional = topicoRepository.findById(id);
+
+		if (opcional.isPresent() == false) {
+			return null;
+		}
+
+		Topico topico = opcional.get();
+		
+		if (topico == null)
+			return ResponseEntity.notFound().build();
+		else {
+			topicoRepository.delete(topico);
+			return ResponseEntity.ok().build();
+		}
 	}
 
 }
