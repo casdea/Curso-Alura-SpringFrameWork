@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -96,8 +97,25 @@ public class TopicosController {
 		}
 	}
 
-	@GetMapping
+	//@GetMapping
 	public Page<TopicoModel> listaPaginacaoAndOrdenacaoSimplificado(@RequestParam(required = false) String nomeCurso,
+			@PageableDefault(page = 0, size = 10, sort = "id", direction = Direction.DESC) Pageable paginacao) {
+		if (nomeCurso == null) {
+			Page<Topico> topicos = topicoRepository.findAll(paginacao);
+			return TopicoModel.toPages(topicos);
+
+		} else {
+			// tipo 1
+			// List<Topico> topicos = topicoRepository.findByCursoNome(nomeCurso);
+			// tipo 2
+			Page<Topico> topicos = topicoRepository.findByCursoNomeQuery(nomeCurso, paginacao);
+			return TopicoModel.toPages(topicos);
+		}
+	}
+
+	@GetMapping
+	@Cacheable(value = "listaDeTopicos")
+	public Page<TopicoModel> listaPaginacaoAndOrdenacaoSimplificadoCache(@RequestParam(required = false) String nomeCurso,
 			@PageableDefault(page = 0, size = 10, sort = "id", direction = Direction.DESC) Pageable paginacao) {
 		if (nomeCurso == null) {
 			Page<Topico> topicos = topicoRepository.findAll(paginacao);
