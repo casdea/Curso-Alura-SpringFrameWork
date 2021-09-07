@@ -97,7 +97,7 @@ public class TopicosController {
 
 	@GetMapping
 	public Page<TopicoModel> listaPaginacaoAndOrdenacaoSimplificado(@RequestParam(required = false)  String nomeCurso,
-			@PageableDefault(sort = "id", direction = Direction.DESC) Pageable paginacao) {
+			@PageableDefault(page = 0, size=10, sort = "id", direction = Direction.DESC) Pageable paginacao) {
 		
 		if (nomeCurso == null) {
 			Page<Topico> topicos = topicoRepository.findAll(paginacao);
