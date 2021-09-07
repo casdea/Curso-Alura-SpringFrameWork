@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -56,10 +57,29 @@ public class TopicosController {
 		}
 	}
 
-	@GetMapping
+	//@GetMapping
 	public Page<TopicoModel> listaPaginacao(@RequestParam(required = false)  String nomeCurso, @RequestParam int pagina, @RequestParam int qtde) {
 		
 		Pageable paginacao = PageRequest.of(pagina, qtde);
+		
+		if (nomeCurso == null) {
+			Page<Topico> topicos = topicoRepository.findAll(paginacao);
+			return TopicoModel.toPages(topicos);
+
+		} else {
+			// tipo 1
+			// List<Topico> topicos = topicoRepository.findByCursoNome(nomeCurso);
+			// tipo 2
+			Page<Topico> topicos = topicoRepository.findByCursoNomeQuery(nomeCurso, paginacao);
+			return TopicoModel.toPages(topicos);
+		}
+	}
+
+	@GetMapping
+	public Page<TopicoModel> listaPaginacaoAndOrdenacao(@RequestParam(required = false)  String nomeCurso,
+			@RequestParam int pagina, @RequestParam int qtde, @RequestParam String ordenacao) {
+		
+		Pageable paginacao = PageRequest.of(pagina, qtde, Direction.ASC, ordenacao);
 		
 		if (nomeCurso == null) {
 			Page<Topico> topicos = topicoRepository.findAll(paginacao);
