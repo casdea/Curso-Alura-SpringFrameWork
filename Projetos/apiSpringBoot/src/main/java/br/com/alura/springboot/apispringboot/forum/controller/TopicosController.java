@@ -3,6 +3,8 @@ package br.com.alura.springboot.apispringboot.forum.controller;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,12 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.function.EntityResponse;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.alura.springboot.apispringboot.forum.dto.TopicoInput;
 import br.com.alura.springboot.apispringboot.forum.dto.TopicoModel;
-import br.com.alura.springboot.apispringboot.forum.modelo.Resposta;
 import br.com.alura.springboot.apispringboot.forum.modelo.Topico;
 import br.com.alura.springboot.apispringboot.forum.repository.CursoRepository;
 import br.com.alura.springboot.apispringboot.forum.repository.TopicoRepository;
@@ -46,7 +46,7 @@ public class TopicosController {
 	}
 
 	@PostMapping
-	public ResponseEntity<TopicoModel> criar(@RequestBody TopicoInput topicoInput, UriComponentsBuilder uriComponentsBuilder) {
+	public ResponseEntity<TopicoModel> criar(@RequestBody @Valid TopicoInput topicoInput, UriComponentsBuilder uriComponentsBuilder) {
 		Topico topico = topicoInput.to(cursoRepository);
 		topicoRepository.save(topico);
 		
