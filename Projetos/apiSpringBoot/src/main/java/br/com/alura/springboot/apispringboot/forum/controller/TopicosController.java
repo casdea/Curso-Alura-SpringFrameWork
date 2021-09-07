@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -75,7 +76,7 @@ public class TopicosController {
 		}
 	}
 
-	@GetMapping
+	//@GetMapping
 	public Page<TopicoModel> listaPaginacaoAndOrdenacao(@RequestParam(required = false)  String nomeCurso,
 			@RequestParam int pagina, @RequestParam int qtde, @RequestParam String ordenacao) {
 		
@@ -94,6 +95,24 @@ public class TopicosController {
 		}
 	}
 
+	@GetMapping
+	public Page<TopicoModel> listaPaginacaoAndOrdenacaoSimplificado(@RequestParam(required = false)  String nomeCurso,
+			@PageableDefault(sort = "id", direction = Direction.DESC) Pageable paginacao) {
+		
+		if (nomeCurso == null) {
+			Page<Topico> topicos = topicoRepository.findAll(paginacao);
+			return TopicoModel.toPages(topicos);
+
+		} else {
+			// tipo 1
+			// List<Topico> topicos = topicoRepository.findByCursoNome(nomeCurso);
+			// tipo 2
+			Page<Topico> topicos = topicoRepository.findByCursoNomeQuery(nomeCurso, paginacao);
+			return TopicoModel.toPages(topicos);
+		}
+	}
+
+	
 	@PostMapping
 	public ResponseEntity<TopicoModel> criar(@RequestBody @Valid TopicoInput topicoInput,
 			UriComponentsBuilder uriComponentsBuilder) {
