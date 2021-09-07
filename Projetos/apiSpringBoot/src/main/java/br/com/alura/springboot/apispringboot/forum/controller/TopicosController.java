@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -131,6 +132,9 @@ public class TopicosController {
 	}
 
 	@PostMapping
+	@Transactional
+	//limpar os caches
+	@CacheEvict(value = "listaDeTopicos", allEntries = true)
 	public ResponseEntity<TopicoModel> criar(@RequestBody @Valid TopicoInput topicoInput,
 			UriComponentsBuilder uriComponentsBuilder) {
 		Topico topico = topicoInput.to(cursoRepository);
@@ -155,6 +159,9 @@ public class TopicosController {
 
 	@PutMapping("/{id}")
 	@Transactional
+	//limpar os caches
+	@CacheEvict(value = "listaDeTopicos", allEntries = true)
+
 	public ResponseEntity<TopicoModel> atualizar(@PathVariable Long id,
 			@RequestBody @Valid AtualizarTopicoInput atualizarTopicoInput, UriComponentsBuilder uriComponentsBuilder) {
 
@@ -168,6 +175,8 @@ public class TopicosController {
 
 	@DeleteMapping("/{id}")
 	@Transactional
+	//limpar os caches
+	@CacheEvict(value = "listaDeTopicos", allEntries = true)
 	public ResponseEntity<?> remover(@PathVariable Long id,
 			@RequestBody @Valid AtualizarTopicoInput atualizarTopicoInput, UriComponentsBuilder uriComponentsBuilder) {
 
