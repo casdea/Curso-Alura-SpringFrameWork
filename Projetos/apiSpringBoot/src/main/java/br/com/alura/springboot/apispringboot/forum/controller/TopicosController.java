@@ -43,7 +43,7 @@ public class TopicosController {
 	@Autowired
 	private CursoRepository cursoRepository;
 
-	//@GetMapping
+	// @GetMapping
 	public List<TopicoModel> lista(String nomeCurso) {
 		if (nomeCurso == null) {
 			List<Topico> topicos = topicoRepository.findAll();
@@ -53,16 +53,17 @@ public class TopicosController {
 			// tipo 1
 			List<Topico> topicos = topicoRepository.findByCursoNome(nomeCurso);
 			// tipo 2
-			//List<Topico> topicos = topicoRepository.findByCursoNomeQuery(nomeCurso);
+			// List<Topico> topicos = topicoRepository.findByCursoNomeQuery(nomeCurso);
 			return TopicoModel.toList(topicos);
 		}
 	}
 
-	//@GetMapping
-	public Page<TopicoModel> listaPaginacao(@RequestParam(required = false)  String nomeCurso, @RequestParam int pagina, @RequestParam int qtde) {
-		
+	// @GetMapping
+	public Page<TopicoModel> listaPaginacao(@RequestParam(required = false) String nomeCurso, @RequestParam int pagina,
+			@RequestParam int qtde) {
+
 		Pageable paginacao = PageRequest.of(pagina, qtde);
-		
+
 		if (nomeCurso == null) {
 			Page<Topico> topicos = topicoRepository.findAll(paginacao);
 			return TopicoModel.toPages(topicos);
@@ -76,12 +77,12 @@ public class TopicosController {
 		}
 	}
 
-	//@GetMapping
-	public Page<TopicoModel> listaPaginacaoAndOrdenacao(@RequestParam(required = false)  String nomeCurso,
+	// @GetMapping
+	public Page<TopicoModel> listaPaginacaoAndOrdenacao(@RequestParam(required = false) String nomeCurso,
 			@RequestParam int pagina, @RequestParam int qtde, @RequestParam String ordenacao) {
-		
+
 		Pageable paginacao = PageRequest.of(pagina, qtde, Direction.ASC, ordenacao);
-		
+
 		if (nomeCurso == null) {
 			Page<Topico> topicos = topicoRepository.findAll(paginacao);
 			return TopicoModel.toPages(topicos);
@@ -96,9 +97,8 @@ public class TopicosController {
 	}
 
 	@GetMapping
-	public Page<TopicoModel> listaPaginacaoAndOrdenacaoSimplificado(@RequestParam(required = false)  String nomeCurso,
-			@PageableDefault(page = 0, size=10, sort = "id", direction = Direction.DESC) Pageable paginacao) {
-		
+	public Page<TopicoModel> listaPaginacaoAndOrdenacaoSimplificado(@RequestParam(required = false) String nomeCurso,
+			@PageableDefault(page = 0, size = 10, sort = "id", direction = Direction.DESC) Pageable paginacao) {
 		if (nomeCurso == null) {
 			Page<Topico> topicos = topicoRepository.findAll(paginacao);
 			return TopicoModel.toPages(topicos);
@@ -112,7 +112,6 @@ public class TopicosController {
 		}
 	}
 
-	
 	@PostMapping
 	public ResponseEntity<TopicoModel> criar(@RequestBody @Valid TopicoInput topicoInput,
 			UriComponentsBuilder uriComponentsBuilder) {
@@ -161,7 +160,7 @@ public class TopicosController {
 		}
 
 		Topico topico = opcional.get();
-		
+
 		if (topico == null)
 			return ResponseEntity.notFound().build();
 		else {
