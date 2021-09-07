@@ -2,18 +2,21 @@ package br.com.alura.springboot.apispringboot.forum.controller;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import br.com.alura.springboot.apispringboot.forum.dto.DetalhesTopicoModel;
 import br.com.alura.springboot.apispringboot.forum.dto.TopicoInput;
 import br.com.alura.springboot.apispringboot.forum.dto.TopicoModel;
 import br.com.alura.springboot.apispringboot.forum.modelo.Topico;
@@ -46,13 +49,26 @@ public class TopicosController {
 	}
 
 	@PostMapping
-	public ResponseEntity<TopicoModel> criar(@RequestBody @Valid TopicoInput topicoInput, UriComponentsBuilder uriComponentsBuilder) {
+	public ResponseEntity<TopicoModel> criar(@RequestBody @Valid TopicoInput topicoInput,
+			UriComponentsBuilder uriComponentsBuilder) {
 		Topico topico = topicoInput.to(cursoRepository);
 		topicoRepository.save(topico);
-		
+
 		URI uri = uriComponentsBuilder.path("/topicos/{id}").buildAndExpand(topico.getId()).toUri();
-		
+
 		return ResponseEntity.created(uri).body(new TopicoModel(topico));
+	}
+
+	@GetMapping("/{id}")
+	public DetalhesTopicoModel find(@PathVariable Long id) {
+
+		Optional<Topico> opcional = topicoRepository.findById(id);
+
+		if (opcional.isPresent() == false) {
+			return null;
+		}
+
+		return new DetalhesTopicoModel(opcional.get());
 	}
 
 }
