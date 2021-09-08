@@ -33,7 +33,7 @@ public class TokenService {
 	public boolean isTokenValido(String token) {
 		// TODO Auto-generated method stub
 		try {
-			Jwts.parser().setSigningKey(this.secret).parseClaimsJwt(token);
+			Jwts.parser().setSigningKey(this.secret).parseClaimsJws(token);
 			return true;
 		} catch (Exception e) {
 			return false;
