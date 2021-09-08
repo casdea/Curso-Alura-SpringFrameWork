@@ -47,7 +47,11 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 		.antMatchers(HttpMethod.POST, "/auth").permitAll()
 		.anyRequest().authenticated()
 		//.and().formLogin()
+		//desabilita 
+		//Cross-Site Request Forgery (CSRF) is an attack that forces an end user 
+		//to execute unwanted actions on a web application in which they’re currently authenticated
 		.and().csrf().disable() 
+		//Nao deve gravar sessao
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
 	
