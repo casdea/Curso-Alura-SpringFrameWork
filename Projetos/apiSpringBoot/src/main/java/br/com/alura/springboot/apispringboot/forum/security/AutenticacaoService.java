@@ -16,12 +16,12 @@ public class AutenticacaoService implements UserDetailsService {
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
-	
+		
 	@Override
-	public UserDetails loadUserByUsername(String arg0) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
 		
-		Optional<Usuario> usuario = usuarioRepository.findByEmail(arg0);
+		Optional<Usuario> usuario = usuarioRepository.findByEmail(username);
 		
 		if (usuario.isPresent()==false) {
 			throw new UsernameNotFoundException("Dados invalidos informados");
