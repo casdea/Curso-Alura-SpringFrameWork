@@ -19,8 +19,8 @@ import br.com.alura.springboot.apispringboot.forum.repository.UsuarioRepository;
 
 @EnableWebSecurity
 @Configuration
-@Profile(value = "prod")
-public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
+@Profile(value = "dev")
+public class DevSecurityConfigurations extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private AutenticacaoService autenticacaoService;
